@@ -108,7 +108,7 @@ source /Users/zhanghang/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 source $ZSH/oh-my-zsh.sh
 export HOMEBREW_NO_AUTO_UPDATE=true
-alias vpn='export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890'
+# alias vpn='export https_proxy=http://ip:port http_proxy=http://ip:port all_proxy=socks5://ip:port'
 alias unvpn='unset https_proxy http_proxy all_proxy'
 alias path='greadlink -f'
 alias myserver='ssh root@42.193.114.42'
