@@ -69,6 +69,7 @@ func! CompileRunGcc()
 	elseif &filetype == 'cpp'
 		exec "!g++ % -std=c++11 -o %<"
 		exec "!time ./%<"
+		exec "!rm %<"
 	elseif &filetype == 'java' 
 		exec "!javac %" 
 		exec "!time java %<"
@@ -143,12 +144,12 @@ func SetTitle()
 		call append(line(".")+14, "#include<set>")
 		call append(line(".")+15, "#include<map>")
 		call append(line(".")+16, "#include<cmath>")
-		call append(line(".")+17, "using namespace std;")
-		call append(line(".")+18, "typedef long long ll;")
-		call append(line(".")+19, "const int MAXN=200005;")
-		call append(line(".")+20, "const ll mod=1e9+7;")
-		call append(line(".")+21, "const int inf=0x3f3f3f3f;")
-		call append(line(".")+22, "")
+		call append(line(".")+17, "#include<fstream>")
+		call append(line(".")+18, "using namespace std;")
+		call append(line(".")+19, "typedef long long ll;")
+		call append(line(".")+20, "const int MAXN=200005;")
+		call append(line(".")+21, "const ll mod=1e9+7;")
+		call append(line(".")+22, "const int inf=0x3f3f3f3f;")
 		call append(line(".")+23, "")
 		call append(line(".")+24, "")
 		call append(line(".")+25, "")
@@ -157,6 +158,7 @@ func SetTitle()
 		call append(line(".")+28, "")
 		call append(line(".")+29, "")
 		call append(line(".")+30, "")
+		call append(line(".")+31, "")
 	endif
 	if &filetype == 'c'
 		call append(line(".")+6, "#include<stdio.h>")
@@ -176,7 +178,7 @@ endfunc
 autocmd BufNewFile * normal G
 
 
-nnoremap p <S-p>
+"nnoremap p <S-p>
 inoremap ' ''<ESC>i
 inoremap " ""<ESC>i
 inoremap ( ()<ESC>i
