@@ -3,13 +3,15 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# only keep this line for mac
 export PATH=/opt/homebrew/bin:$PATH
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="ys"
+ZSH_THEME="lukerandall" # change to ys at mac
 # ZSH_THEME="agnoster"
 
 export LS_COLORS='di=01;94:'
@@ -93,7 +95,7 @@ source $ZSH/oh-my-zsh.sh
 #PROMPT='%{$fg[white]%}[%*] '$PROMPT
 #PROMPT='%{$fg[white]%}[%*] '$PROMPT
 
-# this works for luke
+# this works for lukerandall theme
 # PROMPT='%{$fg[white]%}[%* $(date +%Z)] '$PROMPT
 # function preexec() {
 #   timer=$(($(date +%s%0N)/1000000))
