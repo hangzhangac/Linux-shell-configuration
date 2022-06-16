@@ -1,4 +1,4 @@
-##Put all three files in your root directory
+## Put all three files in your root directory
 ### For ~/.zshrc
 After you install oh-my-zsh, run
 ```
