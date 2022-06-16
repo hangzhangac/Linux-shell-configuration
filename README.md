@@ -1,6 +1,6 @@
 ##Put all three files in your root directory
 ### For ~/.zshrc
-After you install oh-my-zsh
+After you install oh-my-zsh, run
 ```
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
