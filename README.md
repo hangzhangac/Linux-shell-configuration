@@ -9,7 +9,7 @@ git clone https://github.com/paulirish/git-open.git $ZSH_CUSTOM/plugins/git-open
 
 ### For ~/.vimrc
 See [https://draculatheme.com/vim](https://draculatheme.com/vim) to install the dracula theme.  
-Then start vim and run :PlugInstall
+Then start vim and run :PluginInstall
 
 ### For tmux
 Run
