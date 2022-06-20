@@ -1,22 +1,27 @@
-set nocompatible               "去除VIM一致性，必须"
-filetype off                   "必须"
+set nocompatible
+filetype off
 
-
-"设置包括vundle和初始化相关的运行时路径"
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-"启用vundle管理插件，必须"
+" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdcommenter'
 Plugin 'preservim/nerdtree'
-"Plugin 'frazrepo/vim-rainbow'  "这个可以给括号加颜色 容易分别配对
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'mhinz/vim-startify'
+"Plugin 'frazrepo/vim-rainbow'
 "Plugin 'davidhalter/jedi-vim'
-"在此增加其他插件，安装的插件需要放在vundle#begin和vundle#end之间"
-"安装github上的插件格式为 Plugin '用户名/插件仓库名'"
+"Keep Plugin commands between vundle#begin/end.
+"Plugin from github, format: Plugin 'username/repo'
 
 call vundle#end()              
-filetype plugin indent on      "加载vim自带和插件相应的语法和文件类型相关脚本，必须"
+
+" required
+filetype plugin indent on      
 "let g:jedi#auto_initialization = 0"
 autocmd FileType python setlocal completeopt-=preview
 
@@ -25,12 +30,12 @@ syntax enable
 colorscheme dracula
 
 
-"这两行是nerdtree的配置
+"config of nerdtree
 map <F3> :NERDTreeMirror<CR>
 map <F3> :NERDTreeToggle<CR>
 
 
-"这两行是vim-rainbow的配置
+"config of vim-rainbow
 "au FileType c,cpp,objc,objcpp call rainbow#load()
 "let g:rainbow_active = 1
 
@@ -48,12 +53,42 @@ set shiftwidth=4
 set ignorecase
 set smartindent
 set hlsearch
+set cursorline
 
+" Let's save undo info!
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+set undodir=~/.vim/undo-dir
+set undofile
+
+
+"config of statusline
 set laststatus=2
-
-set statusline=%F%m%r%h%w\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [POS=%04l,%04v][%p%%]\ [LEN=%L] 
-
+set statusline=%{b:gitbranch}
+set statusline+=%F%m%r%h%w\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [POS=%04l,%04v][%p%%]\ [LEN=%L] 
+function! StatuslineGitBranch()
+  let b:gitbranch=""
+  if &modifiable
+    try
+      let l:dir=expand('%:p:h')
+      let l:gitrevparse = system("git -C ".l:dir." rev-parse --abbrev-ref HEAD")
+      if !v:shell_error
+        let b:gitbranch="(".substitute(l:gitrevparse, '\n', '', 'g').") "
+      endif
+    catch
+    endtry
+  endif
+endfunction
+
+augroup GetGitBranch
+  autocmd!
+  autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
+augroup END
 
 syntax on
 filetype on
@@ -107,7 +142,6 @@ endfunc
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()" 
 ""定义函数SetTitle，自动插入文件头 
 func SetTitle() 
-	"如果文件类型为.sh文件 
 	if &filetype == 'sh' 
 		call setline(1,"\#!/bin/bash") 
 		call append(line("."), "") 
@@ -173,17 +207,16 @@ func SetTitle()
 		call append(line(".")+6,"public class ".expand("%:r"))
 		call append(line(".")+7,"")
 	endif
-	"新建文件后，自动定位到文件末尾
 endfunc 
 autocmd BufNewFile * normal G
 
 
 "nnoremap p <S-p>
-inoremap ' ''<ESC>i
-inoremap " ""<ESC>i
-inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
-inoremap { {<CR>}<ESC>O
+"inoremap ' ''<ESC>i
+"inoremap " ""<ESC>i
+"inoremap ( ()<ESC>i
+"inoremap [ []<ESC>i
+"inoremap { {<CR>}<ESC>O
 
 
 
