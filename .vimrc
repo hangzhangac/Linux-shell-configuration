@@ -224,3 +224,7 @@ autocmd BufNewFile * normal G
 "hi String ctermfg =yellow
 hi Type ctermfg =yellow
 hi Normal ctermfg=252 ctermbg=none
+"解决中文乱码问题
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
