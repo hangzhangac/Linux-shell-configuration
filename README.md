@@ -9,7 +9,7 @@ git clone https://github.com/paulirish/git-open.git $ZSH_CUSTOM/plugins/git-open
 
 ### For ~/.vimrc
 Follow [https://draculatheme.com/vim](https://draculatheme.com/vim) to install the dracula theme.  
-Then install Vundle to manage the plugins of VIM
+Then install Vundle to manage the plugins of VIM by running
 ```
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
