@@ -12,7 +12,8 @@ See [https://draculatheme.com/vim](https://draculatheme.com/vim) to install the 
 ```
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
-Then start vim and run :PluginInstall
+Then start vim and run :PluginInstall __OR__ run vim +PluginInstall +qall in the shell.
+
 
 ### For tmux
 Run
