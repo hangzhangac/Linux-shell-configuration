@@ -87,6 +87,7 @@ plugins=(git
 	git-open
 	z
 	autojump
+	mercurial
 )
 
 source $ZSH/oh-my-zsh.sh
