@@ -37,19 +37,24 @@ my_hg_prompt_info() {
 # show git and hg info:
 # # fg_bold: bold font
 # PROMPT='%{$fg_bold[green]%}%n@%m%{$reset_color%} %{%F{75}%}%~%{$reset_color%} $(my_git_prompt_info)$(hg_prompt_info)%{$reset_color%}%B»%b '
-PROMPT='%{$fg[green]%}%n@%m%{$reset_color%} %{$terminfo[bold]%}%{%F{75}%}%~%{$reset_color%} $(my_git_prompt_info)$(hg_prompt_info)%{$reset_color%}%B»%b '
+# PROMPT='%{$fg[green]%}%n@%m%{$reset_color%} %{$terminfo[bold]%}%{%F{75}%}%~%{$reset_color%} $(my_git_prompt_info)$(hg_prompt_info)%{$reset_color%}%B»%b '
+PROMPT='%{$fg[green]%}%n@%m%{$reset_color%} %{$terminfo[bold]%}%{%F{75}%}%~%{$reset_color%} $(my_git_prompt_info)$(git_prompt_short_sha)$(hg_prompt_info)%{$reset_color%}%B»%b '
 # show hg info:
 # PROMPT='%{$fg_bold[green]%}%n@%m%{$reset_color%} %{$terminfo[bold]%}%{%F{75}%}%~%{$reset_color%} $(hg_prompt_info)%{$reset_color%}%B»%b '
 RPS1="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}("
-ZSH_THEME_GIT_PROMPT_SUFFIX=") %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%%"
 ZSH_THEME_GIT_PROMPT_ADDED="+"
 ZSH_THEME_GIT_PROMPT_MODIFIED="*"
 ZSH_THEME_GIT_PROMPT_RENAMED="~"
 ZSH_THEME_GIT_PROMPT_DELETED="!"
 ZSH_THEME_GIT_PROMPT_UNMERGED="?"
+
+# Format for git_prompt_long_sha() and git_prompt_short_sha()
+ZSH_THEME_GIT_PROMPT_SHA_BEFORE="%{$fg[white]%}| %{$fg[white]%}"
+ZSH_THEME_GIT_PROMPT_SHA_AFTER="%{$fg[yellow]%})"
 
 # hg
 ZSH_THEME_HG_PROMPT_PREFIX="%{$fg[yellow]%}hg(%{$fg[yellow]%}"
