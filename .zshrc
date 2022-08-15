@@ -99,29 +99,42 @@ source $ZSH/oh-my-zsh.sh
 
 # this works for lukerandall theme
 # PROMPT='%{$fg[white]%}[%* $(date +%Z)] '$PROMPT
-# function preexec() {
-#   timer=$(($(date +%s%0N)/1000000))
-# }
-# 
-# function precmd() {
-#   unset RPROMPT
-#   # echo "hello"
-#   if [ $timer ]; then
-# 	# echo "hello1"
-#     now=$(($(date +%s%0N)/1000000))
-#     elapsed=$(($now-$timer))
-#   	if [ $elapsed -lt 1000 ]
-#   	then
-#     	export RPROMPT="%F{cyan}${elapsed}ms %{$reset_color%}"
-#   	else
-# 		# $elapsed="scale=2; $elapsed/1000" | bc
-# 		# echo $elapsed
-# 		elapsed=$((elapsed / 1000))
-# 		export RPROMPT="%F{cyan}${elapsed}s %{$reset_color%}"
-#   	fi
-#   	unset timer
-#   fi
-# }
+
+
+# The two functions below is used for showing the execution time of each command
+# Only works on Linux, not works on Mac
+function preexec() {
+  timer=$(($(date +%s%0N)/1000000))
+}
+
+function precmd() {
+  unset RPROMPT
+  if [ $timer ]; then
+    now=$(($(date +%s%0N)/1000000))
+    elapsed=$(($now-$timer))
+    if [ $elapsed -lt 1000 ]
+    then
+        export RPROMPT="%F{cyan}${elapsed}ms %{$reset_color%}"
+    elif [ $elapsed -ge 1000 ] && [ $elapsed -lt 60000 ]
+    then
+        elapsed=$((elapsed / 1000))
+        export RPROMPT="%F{cyan}${elapsed}s %{$reset_color%}"
+    else
+        elapsedminutes=$((elapsed / 60000))
+        elapsedseconds=$((elapsed % 60000 / 1000))
+        if [ $elapsedseconds -ne 0 ] 
+        then
+            export RPROMPT="%F{cyan}${elapsedminutes}m ${elapsedseconds}s %{$reset_color%}"
+        else
+            export RPROMPT="%F{cyan}${elapsedminutes}m %{$reset_color%}"
+        fi  
+    fi  
+    unset timer
+  fi  
+  # show time and timezone on the right
+  # export RPROMPT=$RPROMPT' %{$fg[white]%}[%* $(date +%Z)]'
+}
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
