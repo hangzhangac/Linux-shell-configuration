@@ -162,5 +162,3 @@ function precmd() {
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias path='greadlink -f'
 alias ip='curl ipinfo.io'
-alias aws='ssh -i "~/Desktop/server.pem" ubuntu@ec2-3-16-1-25.us-east-2.compute.amazonaws.com'
-alias linode='ssh hangzhang@172.104.26.121'
