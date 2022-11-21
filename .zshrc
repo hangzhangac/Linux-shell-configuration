@@ -162,3 +162,4 @@ function precmd() {
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias path='greadlink -f'
 alias ip='curl ipinfo.io'
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
